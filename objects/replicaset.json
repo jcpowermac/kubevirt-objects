@@ -1,0 +1,206 @@
+{
+  "apiVersion": "string",
+  "kind": "string",
+  "metadata": {
+    "annotations": {},
+    "labels": {},
+    "name": "string",
+    "namespace": "string"
+  },
+  "spec": {
+    "paused": true,
+    "replicas": 0,
+    "selector": {
+      "matchExpressions": [
+        {
+          "key": "string",
+          "operator": "string",
+          "values": [
+            "string"
+          ]
+        }
+      ],
+      "matchLabels": {}
+    },
+    "template": {
+      "metadata": {
+        "annotations": {},
+        "labels": {},
+        "name": "string",
+        "namespace": "string"
+      },
+      "spec": {
+        "affinity": {
+          "nodeAffinity": {
+            "preferredDuringSchedulingIgnoredDuringExecution": [
+              {
+                "preference": {
+                  "matchExpressions": [
+                    {}
+                  ]
+                },
+                "weight": 0
+              }
+            ],
+            "requiredDuringSchedulingIgnoredDuringExecution": {
+              "nodeSelectorTerms": [
+                {
+                  "matchExpressions": [
+                    {}
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "domain": {
+          "clock": {
+            "timer": {
+              "hpet": {
+                "present": true,
+                "tickPolicy": "string"
+              },
+              "hyperv": {
+                "present": true
+              },
+              "kvm": {
+                "present": true
+              },
+              "pit": {
+                "present": true,
+                "tickPolicy": "string"
+              },
+              "rtc": {
+                "present": true,
+                "tickPolicy": "string",
+                "track": "string"
+              }
+            },
+            "timezone": null,
+            "utc": {
+              "offsetSeconds": 0
+            }
+          },
+          "cpu": {
+            "cores": 0
+          },
+          "devices": {
+            "disks": [
+              {
+                "cdrom": {
+                  "bus": "string",
+                  "readonly": true,
+                  "tray": "string"
+                },
+                "disk": {
+                  "bus": "string",
+                  "readonly": true
+                },
+                "floppy": {
+                  "readonly": true,
+                  "tray": "string"
+                },
+                "lun": {
+                  "bus": "string",
+                  "readonly": true
+                },
+                "name": "string",
+                "volumeName": "string"
+              }
+            ],
+            "watchdog": {
+              "i6300esb": {
+                "action": "string"
+              },
+              "name": "string"
+            }
+          },
+          "features": {
+            "acpi": {
+              "enabled": true
+            },
+            "apic": {
+              "enabled": true,
+              "endOfInterrupt": true
+            },
+            "hyperv": {
+              "relaxed": {
+                "enabled": true
+              },
+              "reset": {
+                "enabled": true
+              },
+              "runtime": {
+                "enabled": true
+              },
+              "spinlocks": {
+                "enabled": true,
+                "spinlocks": 0
+              },
+              "synic": {
+                "enabled": true
+              },
+              "synictimer": {
+                "enabled": true
+              },
+              "vapic": {
+                "enabled": true
+              },
+              "vendorid": {
+                "enabled": true,
+                "vendorid": "string"
+              },
+              "vpindex": {
+                "enabled": true
+              }
+            }
+          },
+          "firmware": {
+            "uuid": "string"
+          },
+          "machine": {
+            "type": "string"
+          },
+          "resources": {
+            "limits": {},
+            "requests": {}
+          }
+        },
+        "nodeSelector": {},
+        "volumes": [
+          {
+            "cloudInitNoCloud": {
+              "secretRef": {
+                "name": "string"
+              },
+              "userData": "string",
+              "userDataBase64": "string"
+            },
+            "emptyDisk": {
+              "capacity": "string"
+            },
+            "ephemeral": {
+              "persistentVolumeClaim": {
+                "claimName": "string",
+                "readOnly": true
+              }
+            },
+            "name": "string",
+            "persistentVolumeClaim": {
+              "claimName": "string",
+              "readOnly": true
+            },
+            "registryDisk": {
+              "image": "string",
+              "imagePullSecret": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "status": {
+    "readyReplicas": 0,
+    "replicas": 0
+  }
+}
