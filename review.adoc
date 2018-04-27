@@ -136,33 +136,9 @@ Below is a basic example of the `nodeSelector`.
 - https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
 - http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/assigning-vms-to-nodes?id=nodeselector
 
-==== .spec.terminationGracePeriodSeconds
 
-The length of time in seconds that after the virtual machine has been signaled to
-stop will be force terminated.
 
-[source,yaml]
-----
-  terminationGracePeriodSeconds: 0
-----
-
-===== References
-- http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_virtualmachinespec
-
-==== .spec.domain
-This is of type `DomainSpec` and is the virtual machine hardware configuration.
-It defines the cpu quantity, ram and cpu requests, QEMU machine type, firmware, and disks.
-
-[source,yaml]
-----
-  domain:
-----
-
-===== References
-
-- http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_domainspec
-
-==== .spec.domain.clock
+==== Clocks and Timers
 
 Configures the virtualize hardware clock provided by QEMU.
 
@@ -180,8 +156,6 @@ Configures the virtualize hardware clock provided by QEMU.
 - https://qemu.weilnetz.de/doc/qemu-doc.html#Debug_002fExpert-options
 - http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_clock
 - http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/virtualized-hardware-configuration?id=clock
-
-==== Clocks and Timers
 
 Type and policy attribute that determines what action is take when QEMU misses a
 deadline for injecting a tick to the guest.
@@ -552,7 +526,7 @@ metadata:
 spec:
 ----
 
-==== Running
+==== What is Running in OfflineVirtualMachine?
 
 Running controls whether the associatied VirtualMachine is created or not.
 In other words this changes the power status of the virtual machine.
@@ -684,7 +658,7 @@ metadata:
 spec:
 ----
 
-==== Pause Rollout
+==== Pause rollout
 
 This parameter if true pauses the deployment of the `VirtualMachineReplicaSet`.
 
