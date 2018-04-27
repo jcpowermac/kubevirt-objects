@@ -224,38 +224,6 @@ will be used to in scheduling decisions.
 - https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-types
 
 
-==== Disks
-
-Configures a type of disk to the virtual machine and assigns a specific volume
-and its type to that disk via the `volumeName`.
-
-[source,yaml]
-----
-    devices:
-      disks:
-      - cdrom:
-          bus: string
-          readonly: true
-          tray: string
-        disk:
-          bus: string
-          readonly: true
-        floppy:
-          readonly: true
-          tray: string
-        lun:
-          bus: string
-          readonly: true
-        name: string
-        volumeName: string
-----
-
-===== References
-
-- https://libvirt.org/formatdomain.html#elementsDisks
-- https://qemu.weilnetz.de/doc/qemu-doc.html#Block-device-options
-- http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/disks-and-volumes
-- http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_disk
 
 
 ==== Watchdog Devices
@@ -353,7 +321,38 @@ pc-q35-2.10          Standard PC (Q35 + ICH9, 2009)
 - http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/virtualized-hardware-configuration?id=machine-type
 - https://qemu.weilnetz.de/doc/qemu-doc.html#Standard-options
 
-==== cloudInitNoCloud Volume
+==== Disks and Volumes
+
+Configures a type of disk to the virtual machine and assigns a specific volume
+and its type to that disk via the `volumeName`.
+
+[source,yaml]
+----
+    devices:
+      disks:
+      - cdrom:
+          bus: string
+          readonly: true
+          tray: string
+        disk:
+          bus: string
+          readonly: true
+        floppy:
+          readonly: true
+          tray: string
+        lun:
+          bus: string
+          readonly: true
+        name: string
+        volumeName: string
+----
+
+===== References
+
+- https://libvirt.org/formatdomain.html#elementsDisks
+- https://qemu.weilnetz.de/doc/qemu-doc.html#Block-device-options
+- http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/disks-and-volumes
+- http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_disk
 
 `cloudInitNoCloud` injects scripts and configuration into a virtual machine operating system.
 There are three different parameters that can be used to provide
@@ -379,7 +378,8 @@ See the link below in References for an example of how to use
 
 ==== emptyDisk Volume
 
-An extra qcow2 disk that is created with the virtual machine.  It will
+An emptyDisk volume creates an
+extra qcow2 disk that is created with the virtual machine.  It will
 be removed if the `VirtualMachine` object is deleted.
 
 [source,yaml]
@@ -393,10 +393,8 @@ be removed if the `VirtualMachine` object is deleted.
 - http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/disks-and-volumes?id=emptydisk
 - http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_emptydisksource
 
-==== ephemeral Volume
-
-Temporary local copy on write image storage that will be discarded when the
-`VirtualMachine` is removed.
+Ephemeral volume creates a temporary local copy on write image storage
+that will be discarded when the `VirtualMachine` is removed.
 
 [source,yaml]
 ----
@@ -412,10 +410,7 @@ Temporary local copy on write image storage that will be discarded when the
 - http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/disks-and-volumes?id=ephemeral
 - http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_ephemeralvolumesource
 
-==== persistentVolumeClaim Volume
-
-For a persistent virtual machine this type of volume should be used. This
-volume type persists after the `VirtualMachine` is deleted.
+persistentVolumeClaim volume persists after the `VirtualMachine` is deleted.
 
 [source,yaml]
 ----
@@ -429,9 +424,8 @@ volume type persists after the `VirtualMachine` is deleted.
 - http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/disks-and-volumes?id=persistentvolumeclaim
 - http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_persistentvolumeclaimvolumesource
 
-==== registryDisk Volume
 
-This volume type uses a virtual machine disk that is stored in a container image registry.
+registryDisk volume type uses a virtual machine disk that is stored in a container image registry.
 
 [source,yaml]
 ----
