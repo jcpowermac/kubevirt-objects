@@ -376,8 +376,6 @@ See the link below in References for an example of how to use
 - http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/startup-scripts?id=cloud-init-examples
 - http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_cloudinitnocloudsource
 
-==== emptyDisk Volume
-
 An emptyDisk volume creates an
 extra qcow2 disk that is created with the virtual machine.  It will
 be removed if the `VirtualMachine` object is deleted.
