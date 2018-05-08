@@ -81,12 +81,16 @@ metadata:
   labels: {}
   name: string
   namespace: string
+spec: {}
 ----
 
 
 ==== Node Placement
-
-Constrain a virtual machine to run on a node defined by matching expressions using node labels.
+Kubernetes has the ability to schedule a pod to specific nodes based on
+https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature[affinity and anti-affinity] rules.
+http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_nodeaffinity[Node affinity] is also possible with KubeVirt.
+To http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/assigning-vms-to-nodes?id=affinity-and-anti-affinity[constrain a virtual machine]
+to run on a node define a matching expressions using node labels.
 
 [source,yaml]
 ----
@@ -108,42 +112,26 @@ Constrain a virtual machine to run on a node defined by matching expressions usi
             values:
             - string
 ----
-The links below in Reference provides an example of how to use `.spec.affinity`.
 
-===== References
-
-- https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature
-- http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_nodeaffinity
-- http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/assigning-vms-to-nodes?id=affinity-and-anti-affinity
+A virtual machine can also more easily be constrained by using
+http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/assigning-vms-to-nodes?id=nodeselector[nodeSelector] which
+is defined by node's label and value. Here is an example
 
 
-Constrain a virtual machine to run on a node defined by node's label and value.
-
-[source,yaml]
-----
-  nodeSelector: {}
-----
-
-Below is a basic example of the `nodeSelector`.
 [source,yaml]
 ----
   nodeSelector:
     kubernetes.io/hostname: kn1.virtomation.com
 ----
 
-===== References
-
-- https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
-- http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/assigning-vms-to-nodes?id=nodeselector
-
-
 
 ==== Clocks and Timers
 
-Configures the virtualize hardware clock provided by QEMU.
+Configures the virtualize hardware clock provided by https://qemu.weilnetz.de/doc/qemu-doc.html#Debug_002fExpert-options[QEMU].
 
 [source,yaml]
 ----
+  domain:
     clock:
       timezone: string
       utc:
@@ -153,15 +141,16 @@ Configures the virtualize hardware clock provided by QEMU.
 ===== References
 
 - https://libvirt.org/formatdomain.html#elementsTime
-- https://qemu.weilnetz.de/doc/qemu-doc.html#Debug_002fExpert-options
 - http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_clock
 - http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/virtualized-hardware-configuration?id=clock
 
-Type and policy attribute that determines what action is take when QEMU misses a
+Timer defines the https://libvirt.org/formatdomain.html#elementsTime[type and policy attribute]
+that determines what action is take when QEMU misses a
 deadline for injecting a tick to the guest.
 
 [source,yaml]
 ----
+  domain:
     clock:
       timer:
         hpet:
@@ -182,16 +171,16 @@ deadline for injecting a tick to the guest.
 
 ===== References
 
-- https://libvirt.org/formatdomain.html#elementsTime
 - http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_timer
 - http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/virtualized-hardware-configuration?id=timers
 
 
 ==== CPU and Memory
 
-The number of CPU cores a virtual machine will be assigned.
-The value below will not be used for scheduling use
-`.spec.domain.resources.requests.cpu` instead.
+The number of http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/virtualized-hardware-configuration?id=cpu[CPU cores]
+a virtual machine will be assigned.
+http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_cpu[.spec.domain.cpu.cores] will not be used for scheduling use
+http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_resourcerequirements[.spec.domain.resources.requests.cpu] instead.
 
 [source,yaml]
 ----
@@ -199,13 +188,8 @@ The value below will not be used for scheduling use
       cores: 1
 ----
 
-===== References
-
-- http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/virtualized-hardware-configuration?id=cpu
-- http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_cpu
-
-
-There are two supported resource limits and requests: `cpu` and `memory`.
+There are two supported
+http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/virtualized-hardware-configuration?id=resources-requests-and-limits[resource limits and requests]: `cpu` and `memory`.
 A `.spec.domain.resources.requests.memory` should be defined to determine
 the allocation of memory provided to the virtual machine.  These values
 will be used to in scheduling decisions.
@@ -216,15 +200,6 @@ will be used to in scheduling decisions.
       limits: {}
       requests: {}
 ----
-
-===== References
-
-- http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_resourcerequirements
-- http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/virtualized-hardware-configuration?id=resources-requests-and-limits
-- https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-types
-
-
-
 
 ==== Watchdog Devices
 
