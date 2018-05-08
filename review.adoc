@@ -561,10 +561,6 @@ It is used by the controller to keep track of managed virtual machines.
     matchLabels: {}
 ----
 
-==== Examples
-
-- https://github.com/kubevirt/kubevirt/blob/master/cluster/examples/vm-replicaset-cirros.yaml
-
 ==== http://www.kubevirt.io/user-guide/#/workloads/controllers/virtual-machine-replica-set?id=how-to-use-a-virtualmachinereplicaset[Virtual Machine Template Spec]
 
 The `VMTemplateSpec` is the definition of a `VirtualMachine` objects that will
