@@ -89,6 +89,7 @@ spec: {}
 
 Kubernetes has the ability to schedule a pod to specific nodes based on
 https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature[affinity and anti-affinity] rules.
+
 http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_nodeaffinity[Node affinity] is also possible with KubeVirt.
 To http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/assigning-vms-to-nodes?id=affinity-and-anti-affinity[constrain a virtual machine] to run on a node define a matching expressions using node labels.
 
