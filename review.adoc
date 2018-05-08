@@ -548,28 +548,6 @@ This will delete the `VirtualMachine` object which will power off the virtual ma
 kubectl patch offlinevirtualmachine mongodb --type merge -p '{"spec":{"running":false }}' -n nodejs-ex
 ----
 
-==== Virtual Machine Template Spec
-
-The `VMTemplateSpec` is the definition of a `VirtualMachine` object that will
-be created when `running` is set to true.
-
-See `VirtualMachine` section `.spec` for more details about this object.
-
-[source,yaml]
-----
-  template:
-    metadata:
-      annotations: {}
-      labels: {}
-      name: string
-      namespace: string
-    spec:
-----
-
-===== References
-
-- http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_vmtemplatespec
-
 ==== Offline Virtual Machine Status
 
 Once the `OfflineVirtualMachine` object has been created the
@@ -634,20 +612,6 @@ $ kubectl get vms -n nodejs-ex
 NAME           AGE
 replicanmgjl   7m
 replicarjhdz   7m
-----
-
-Below is the subset annotation of the `VirtualMachineReplicaSet` object.
-
-[source,yaml]
-----
-apiVersion: kubevirt.io/v1alpha1
-kind: VirtualMachineReplicaSet
-metadata:
-  annotations: {}
-  labels: {}
-  name: string
-  namespace: string
-spec:
 ----
 
 ==== Pause rollout
@@ -762,16 +726,6 @@ NAME       AGE
 m1.small   17s
 ----
 
-[source,yaml]
-----
-apiVersion: string
-kind: string
-metadata:
-  annotations: {}
-  labels: {}
-  name: string
-  namespace: string
-----
 
 ==== Domain Spec
 
