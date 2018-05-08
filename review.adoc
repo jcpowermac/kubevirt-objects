@@ -194,7 +194,8 @@ will be used to in scheduling decisions.
 
 ==== Watchdog Devices
 
-[.spec.domain.watchdog] automaticaly triggers an action via  https://libvirt.org/formatdomain.html#elementsWatchdog[Libvirt]
+http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_watchdog[.spec.domain.watchdog]
+automaticaly triggers an action via https://libvirt.org/formatdomain.html#elementsWatchdog[Libvirt]
 and https://qemu.weilnetz.de/doc/qemu-doc.html#Debug_002fExpert-options[QEMU] when the virtual machine operating system hangs
 or crashes.
 
@@ -317,7 +318,8 @@ See the user-guide for examples of how to use  http://www.kubevirt.io/user-guide
       userDataBase64: string
 ----
 
-An http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/disks-and-volumes?id=emptydisk[emptyDisk volume]creates an
+An http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/disks-and-volumes?id=emptydisk[emptyDisk volume]
+creates an
 extra qcow2 disk that is created with the virtual machine.  It will
 be removed if the `VirtualMachine` object is deleted.
 
@@ -439,7 +441,7 @@ spec:
 ==== What is Running in OfflineVirtualMachine?
 
 http://www.kubevirt.io/api-reference/v0.4.1/definitions.html#_v1_offlinevirtualmachinespec[.spec.running]
-controls whether the associatied VirtualMachine is created.
+controls whether the associatied VirtualMachine object is created.
 In other words this changes the
 http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/life-cycle?id=stopping-a-virtual-machine[power status] of the virtual machine.
 
@@ -633,8 +635,8 @@ spec:
 ==== Preset Selector
 
 The  http://www.kubevirt.io/user-guide/#/workloads/virtual-machines/presets?id=virtalmachine-selector[selector]
-is optional but if not defined will be applied to all `VirtualMachine` objects -
-which is probably not the intended purpose.
+is optional but if not defined will be applied to all `VirtualMachine` objects; which is probably not the intended purpose
+so I recommend always including a selector.
 
 [source,yaml]
 ----
